@@ -29,10 +29,47 @@
             <div class="four wide column">
                 <div class="ui vertical fluid menu">
                     {{#each developer in model}}
-                        {{#link-to 'users' developer.name class="teal item"}}
-                            {{developer.fullName}}
+                        {{#link-to 'user' developer class="teal item"}}
+                            {{developer.name}}
                         {{/link-to}}
                     {{/each}}
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="user">
+        <div class="ui grid">
+            <div class="four wide column">
+                <div class="ui card">
+                    <div class="image">
+                        <img {{bind-attr src=avatar_url}}>
+                    </div>
+                    <div class="content">
+                    <a class="header">{{name}}</a>
+                        <div class="meta">
+                            <span class="date">Joined in 2014</span>
+                        </div>
+                        <div class="description">
+                            <div class="ui divided list">
+                                <div class="item">
+                                    <i class="mail outline icon"></i>
+                                    <div class="content">
+                                        <div class="description">{{email}}</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <i class="mail outline icon"></i>
+                                    <div class="content">
+                                        <div class="description">{{email}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a><i class="user icon"></i> {{followers}} Followers</a>
+                    </div>
                 </div>
             </div>
         </div>
