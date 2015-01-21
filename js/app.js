@@ -1,27 +1,18 @@
 EmberHub = Ember.Application.create();
 
+var devs = [
+    { name: 'alejandronanez', fullName: 'Alejandro Nanez' },
+    { name: 'locke189', fullName: 'Juan Insuasti' },
+    { name: 'luiskdx', fullName: 'Luis Carlos' },
+    { name: 'tj', fullName: 'TJ' }
+];
+
 EmberHub.Router.map(function() {
-// put your routes here
+    this.resource('users', {path: '/users/:name'});
 });
 
 EmberHub.IndexRoute = Ember.Route.extend({
     model: function () {
-        return [
-            'User one',
-            'User two',
-            'User three',
-            'User four'
-        ];
+        return devs;
     }
-});
-
-EmberHub.IndexController = Ember.ArrayController.extend({
-    actions: {
-        clicked: function (name) {
-            alert('You clicked: ' + name);
-        }
-    },
-    newDate: function () {
-        return new Date();
-    }.property()
 });

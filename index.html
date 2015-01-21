@@ -28,12 +28,13 @@
         <div class="ui grid">
             <div class="four wide column">
                 <div class="ui vertical fluid menu">
-                    {{#each name in model}}
-                    <a class="item" {{action 'clicked' this.name}}>{{name}}</a>
+                    {{#each developer in model}}
+                        {{#link-to 'users' developer.name class="teal item"}}
+                            {{developer.fullName}}
+                        {{/link-to}}
                     {{/each}}
                 </div>
             </div>
-            <h2>{{newDate}}</h2>
         </div>
     </script>
 
