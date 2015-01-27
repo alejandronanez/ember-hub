@@ -43,21 +43,19 @@
             <div class="four wide column">
                 <div class="ui card">
                     <div class="image">
-                        <img {{bind-attr src=avatar_url}}>
+                        {{#link-to 'user' this}}
+                            <img {{bind-attr src=avatar_url}} style="width: 100%;">
+                        {{/link-to}}
                     </div>
                     <div class="content">
-                    <a class="header">{{name}}</a>
+                        {{#link-to 'user' this classNames='header'}}
+                            {{name}}
+                        {{/link-to}}
                         <div class="meta">
                             <span class="date">Joined in 2014</span>
                         </div>
                         <div class="description">
                             <div class="ui divided list">
-                                <div class="item">
-                                    <i class="mail outline icon"></i>
-                                    <div class="content">
-                                        <div class="description">{{email}}</div>
-                                    </div>
-                                </div>
                                 <div class="item">
                                     <i class="mail outline icon"></i>
                                     <div class="content">
