@@ -5,8 +5,7 @@ EmberHub = Ember.Application.create({
 var devs = [
     { login: 'alejandronanez', name: 'Alejandro Nanez' },
     { login: 'locke189', name: 'Juan Insuasti' },
-    { login: 'luiskdx', name: 'Luis Carlos' },
-    { login: 'tj', name: 'TJ' }
+    { login: 'luiskdx', name: 'Luis Carlos' }
 ];
 
 /*==============================
