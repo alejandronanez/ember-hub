@@ -16,6 +16,7 @@ EmberHub.Router.map(function() {
     this.resource('user', { path: '/users/:login' }, function () {
         this.route('userIndex');
         this.resource('repositories', { path: '/repositories' });
+        this.resource('repository', { path: '/repositories/:reponame' });
     });
 
 });
@@ -49,11 +50,24 @@ EmberHub.RepositoriesRoute = Ember.Route.extend({
     }
 });
 
+EmberHub.RepositoryRoute = Ember.Route.extend({
+    model: function (params) {
+        var user = this.modelFor('user');
+        var url = 'http://api.github.com/repos/' + user.login + '/' + params.reponame;
+        return Ember.$.getJSON(url);
+    }
+});
+
 /*===================================
 =            CONTROLLERS            =
 ===================================*/
 
 EmberHub.RepositoriesController = Ember.ArrayController.extend({
+    needs: ['user'],
+    user: Ember.computed.alias('controllers.user')
+});
+
+EmberHub.RepositoryController = Ember.ObjectController.extend({
     needs: ['user'],
     user: Ember.computed.alias('controllers.user')
 });

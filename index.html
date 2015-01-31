@@ -106,7 +106,7 @@
             <tbody>
                 {{#each repo in model}}
                 <tr>
-                    <td>{{repo.name}}</td>
+                    <td>{{#link-to 'repository' repo.name}}{{repo.name}}{{/link-to}}</td>
                     <td>{{repo.description}}</td>
                     <td>{{repo.stargazers_count}}</td>
                     <td>{{repo.watchers_count}}</td>
@@ -115,6 +115,47 @@
                 {{/each}}
             </tbody>
         </table>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="repository">
+
+        <div class="ui breadcrumb">
+            {{#link-to 'index' classNames="section"}}Devs{{/link-to}}
+            <i class="divider"> / </i>
+            {{#link-to 'user' user classNames="section"}}{{user.name}}{{/link-to}}
+            <i class="divider"> / </i>
+            {{#link-to 'repositories' user classNames="section"}}Repositories{{/link-to}}
+            <i class="divider"> / </i>
+            <div class="active section">{{name}}</div>
+        </div>
+
+        <h1>{{name}}</h1>
+        <div class="ui list">
+            <div class="item">
+                <div class="header">Language</div>
+                {{#if language}}
+                    {{language}}
+                {{else}}
+                    No language specified for this repo...yet.
+                {{/if}}
+            </div>
+            <div class="item">
+                <div class="header">Watchers</div>
+                {{watchers_count}}
+            </div>
+            <div class="item">
+                <div class="header">Open Issues</div>
+                {{open_issues_count}}
+            </div>
+            <div class="item">
+                <div class="header">Clone URL</div>
+                {{clone_url}}
+            </div>
+            <div class="item">
+                <div class="header">Web URL</div>
+                <a {{bind-attr href="url"}}>{{url}}</a>
+            </div>
+        </div>
     </script>
 
     <script src="js/libs/jquery-1.10.2.js"></script>
