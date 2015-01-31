@@ -29,7 +29,7 @@
             <div class="four wide column">
                 <div class="ui vertical fluid menu">
                     {{#each developer in model}}
-                        {{#link-to 'user' developer class="teal item"}}
+                        {{#link-to 'user' developer.login class="teal item"}}
                             {{developer.name}}
                         {{/link-to}}
                     {{/each}}
@@ -70,7 +70,51 @@
                     </div>
                 </div>
             </div>
+            <div class="twelve wide column">
+                {{outlet}}
+            </div>
         </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="user/index">
+        <h2>{{name}}'s Github</h2>
+        <ul>
+            <li>{{#link-to 'repositories'}}Repositories{{/link-to}}</li>
+        </ul>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="repositories">
+
+        <div class="ui breadcrumb">
+            {{#link-to 'index' classNames="section"}}Devs{{/link-to}}
+            <i class="divider"> / </i>
+            {{#link-to 'user' user classNames="section"}}{{user.name}}{{/link-to}}
+            <i class="divider"> / </i>
+            <div class="active section">Repositories</div>
+        </div>
+
+        <table class="ui table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Stars</th>
+                    <th>Watchers</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each repo in model}}
+                <tr>
+                    <td>{{repo.name}}</td>
+                    <td>{{repo.description}}</td>
+                    <td>{{repo.stargazers_count}}</td>
+                    <td>{{repo.watchers_count}}</td>
+                    <td><a {{bind-attr href="repo.html_url"}}>See it on Github</a></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
     </script>
 
     <script src="js/libs/jquery-1.10.2.js"></script>
