@@ -16,7 +16,11 @@ EmberHub.Router.map(function() {
     this.resource('user', { path: '/users/:login' }, function () {
         this.route('userIndex');
         this.resource('repositories', { path: '/repositories' });
-        this.resource('repository', { path: '/repositories/:reponame' });
+        this.resource('repository', { path: '/repositories/:reponame' }, function () {
+            this.resource('issues');
+            this.resource('forks');
+            this.resource('commits');
+        });
     });
 
 });
@@ -54,6 +58,22 @@ EmberHub.RepositoryRoute = Ember.Route.extend({
     model: function (params) {
         var user = this.modelFor('user');
         var url = 'http://api.github.com/repos/' + user.login + '/' + params.reponame;
+        return Ember.$.getJSON(url);
+    }
+});
+
+EmberHub.IssuesRoute = Ember.Route.extend({
+    model: function () {
+        var repo = this.modelFor('repository');
+        var url = repo.issues_url.replace('{/number}', '');
+        return Ember.$.getJSON(url);
+    }
+});
+
+EmberHub.CommitsRoute = Ember.Route.extend({
+    model: function () {
+        var repo = this.modelFor('repository');
+        var url = repo.commits_url.replace('{/sha}', '');
         return Ember.$.getJSON(url);
     }
 });
