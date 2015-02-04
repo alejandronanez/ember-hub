@@ -157,26 +157,8 @@
             </div>
         </div>
 
-        <div class="ui bulleted list">
-            {{#link-to 'issues' classNames="item"}}Issues{{/link-to}}
-            {{#link-to 'forks' classNames="item"}}Forks{{/link-to}}
-            {{#link-to 'commits' classNames="item"}}Commits{{/link-to}}
-        </div>
-
         <hr>
         {{outlet}}
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="issues">
-        <h1>Issues</h1>
-        {{#each issue in model}}
-            <hr>
-            {{title}}
-        {{/each}}
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="forks">
-        Forks
     </script>
 
     <script type="text/x-handlebars" data-template-name="commits">
@@ -198,7 +180,7 @@
                     </td>
                     <td>{{commit.commit.message}}</td>
                     <td>{{commit.sha}}</td>
-                    <td><a {{bind-attr href="commit.url"}}>View</a></td>
+                    <td><a {{bind-attr href="commit.html_url"}} target="_blank">View</a></td>
                 </tr>
             </tbody>
             {{/each}}

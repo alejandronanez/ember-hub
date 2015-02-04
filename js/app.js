@@ -62,14 +62,6 @@ EmberHub.RepositoryRoute = Ember.Route.extend({
     }
 });
 
-EmberHub.IssuesRoute = Ember.Route.extend({
-    model: function () {
-        var repo = this.modelFor('repository');
-        var url = repo.issues_url.replace('{/number}', '');
-        return Ember.$.getJSON(url);
-    }
-});
-
 EmberHub.CommitsRoute = Ember.Route.extend({
     model: function () {
         var repo = this.modelFor('repository');
