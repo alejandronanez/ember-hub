@@ -9,190 +9,24 @@
 </head>
 <body>
 
-    <script type="text/x-handlebars" data-template-name="application">
-        <div class="ui inverted menu">
-            <a class="active item">
-                <i class="fork icon"></i> Ember-Hub
-            </a>
-        </div>
-        <div class="ui grid">
-            <div class="sixteen wide column">
-                <h1 class="ui header">Ember-Hub</h1>
-            </div>
-        </div>
-        <div class="ui divider"></div>
-        {{outlet}}
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="index">
-        <div class="ui grid">
-            <div class="four wide column">
-                <div class="ui vertical fluid menu">
-                    {{#each developer in model}}
-                        {{#link-to 'user' developer.login class="teal item"}}
-                            {{developer.name}}
-                        {{/link-to}}
-                    {{/each}}
-                </div>
-            </div>
-        </div>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="user">
-        <div class="ui grid">
-            <div class="four wide column">
-                <div class="ui card">
-                    <div class="image">
-                        {{#link-to 'user' this}}
-                            <img {{bind-attr src=avatar_url}} style="width: 100%;">
-                        {{/link-to}}
-                    </div>
-                    <div class="content">
-                        {{#link-to 'user' this classNames='header'}}
-                            {{name}}
-                        {{/link-to}}
-                        <div class="meta">
-                            <span class="date">Joined in 2014</span>
-                        </div>
-                        <div class="description">
-                            <div class="ui divided list">
-                                <div class="item">
-                                    <i class="mail outline icon"></i>
-                                    <div class="content">
-                                        <div class="description">{{email}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <a><i class="user icon"></i> {{followers}} Followers</a>
-                    </div>
-                </div>
-            </div>
-            <div class="twelve wide column">
-                {{outlet}}
-            </div>
-        </div>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="user/index">
-        <h2>{{name}}'s Github</h2>
-        <ul>
-            <li>{{#link-to 'repositories'}}Repositories{{/link-to}}</li>
-        </ul>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="repositories">
-
-        <div class="ui breadcrumb">
-            {{#link-to 'index' classNames="section"}}Devs{{/link-to}}
-            <i class="divider"> / </i>
-            {{#link-to 'user' user classNames="section"}}{{user.name}}{{/link-to}}
-            <i class="divider"> / </i>
-            <div class="active section">Repositories</div>
-        </div>
-
-        <table class="ui table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Stars</th>
-                    <th>Watchers</th>
-                    <th>Link</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each repo in model}}
-                <tr>
-                    <td>{{#link-to 'repository' repo.name}}{{repo.name}}{{/link-to}}</td>
-                    <td>{{repo.description}}</td>
-                    <td>{{repo.stargazers_count}}</td>
-                    <td>{{repo.watchers_count}}</td>
-                    <td><a {{bind-attr href="repo.html_url"}}>See it on Github</a></td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="repository">
-
-        <div class="ui breadcrumb">
-            {{#link-to 'index' classNames="section"}}Devs{{/link-to}}
-            <i class="divider"> / </i>
-            {{#link-to 'user' user classNames="section"}}{{user.name}}{{/link-to}}
-            <i class="divider"> / </i>
-            {{#link-to 'repositories' user classNames="section"}}Repositories{{/link-to}}
-            <i class="divider"> / </i>
-            <div class="active section">{{name}}</div>
-        </div>
-
-        <h1>{{name}}</h1>
-        <div class="ui list">
-            <div class="item">
-                <div class="header">Language</div>
-                {{#if language}}
-                    {{language}}
-                {{else}}
-                    No language specified for this repo...yet.
-                {{/if}}
-            </div>
-            <div class="item">
-                <div class="header">Watchers</div>
-                {{watchers_count}}
-            </div>
-            <div class="item">
-                <div class="header">Open Issues</div>
-                {{open_issues_count}}
-            </div>
-            <div class="item">
-                <div class="header">Clone URL</div>
-                {{clone_url}}
-            </div>
-            <div class="item">
-                <div class="header">Web URL</div>
-                <a {{bind-attr href="url"}}>{{url}}</a>
-            </div>
-        </div>
-
-        <hr>
-        {{outlet}}
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="commits">
-        <h1>Commits</h1>
-        <table class="ui celled table">
-            <thead>
-                <tr>
-                    <th>Author</th>
-                    <th>Message</th>
-                    <th>Sha</th>
-                    <th>View on github</th>
-                </tr>
-            </thead>
-            {{#each commit in model}}
-            <tbody>
-                <tr>
-                    <td>
-                        <a {{bind-attr href="commit.committer.html_url"}}>{{commit.committer.login}}</a>
-                    </td>
-                    <td>{{commit.commit.message}}</td>
-                    <td>{{commit.sha}}</td>
-                    <td><a {{bind-attr href="commit.html_url"}} target="_blank">View</a></td>
-                </tr>
-            </tbody>
-            {{/each}}
-        </table>
-    </script>
-
     <script src="js/libs/jquery-1.10.2.js"></script>
     <script src="js/libs/moment.min.js"></script>
     <script src="js/semantic.min.js"></script>
     <script src="js/libs/handlebars-v2.0.0.js"></script>
     <script src="js/libs/ember-1.9.1.js"></script>
     <script src="js/app.js"></script>
+    <!-- Routes -->
+    <script src="js/routes/index.js"></script>
+    <script src="js/routes/user.js"></script>
+    <script src="js/routes/user/index.js"></script>
+    <script src="js/routes/commits.js"></script>
+    <script src="js/routes/repositories.js"></script>
+    <script src="js/routes/repository.js"></script>
+    <!-- Controllers -->
+    <script src="js/controllers/repositories.js"></script>
+    <script src="js/controllers/repository.js"></script>
+    <!-- Templates -->
+    <script src="js/templates.js"></script>
     <!-- to activate the test runner, add the "?test" query string parameter -->
     <script src="tests/runner.js"></script>
 </body>

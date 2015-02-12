@@ -1,0 +1,23 @@
+<h1>Commits</h1>
+<table class="ui celled table">
+    <thead>
+    <tr>
+        <th>Author</th>
+        <th>Message</th>
+        <th>Sha</th>
+        <th>View on github</th>
+    </tr>
+    </thead>
+    {{#each commit in model}}
+        <tbody>
+        <tr>
+            <td>
+                <a {{bind-attr href="commit.committer.html_url"}}>{{commit.committer.login}}</a>
+            </td>
+            <td>{{commit.commit.message}}</td>
+            <td>{{commit.sha}}</td>
+            <td><a {{bind-attr href="commit.html_url"}} target="_blank">View</a></td>
+        </tr>
+        </tbody>
+    {{/each}}
+</table>

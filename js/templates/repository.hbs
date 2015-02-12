@@ -1,0 +1,40 @@
+<div class="ui breadcrumb">
+    {{#link-to 'index' classNames="section"}}Devs{{/link-to}}
+    <i class="divider"> / </i>
+    {{#link-to 'user' user classNames="section"}}{{user.name}}{{/link-to}}
+    <i class="divider"> / </i>
+    {{#link-to 'repositories' user classNames="section"}}Repositories{{/link-to}}
+    <i class="divider"> / </i>
+    <div class="active section">{{name}}</div>
+</div>
+
+<h1>{{name}}</h1>
+<div class="ui list">
+    <div class="item">
+        <div class="header">Language</div>
+        {{#if language}}
+            {{language}}
+        {{else}}
+            No language specified for this repo...yet.
+        {{/if}}
+    </div>
+    <div class="item">
+        <div class="header">Watchers</div>
+        {{watchers_count}}
+    </div>
+    <div class="item">
+        <div class="header">Open Issues</div>
+        {{open_issues_count}}
+    </div>
+    <div class="item">
+        <div class="header">Clone URL</div>
+        {{clone_url}}
+    </div>
+    <div class="item">
+        <div class="header">Web URL</div>
+        <a {{bind-attr href="url"}}>{{url}}</a>
+    </div>
+</div>
+
+<hr>
+{{outlet}}

@@ -1,0 +1,30 @@
+<div class="ui breadcrumb">
+    {{#link-to 'index' classNames="section"}}Devs{{/link-to}}
+    <i class="divider"> / </i>
+    {{#link-to 'user' user classNames="section"}}{{user.name}}{{/link-to}}
+    <i class="divider"> / </i>
+    <div class="active section">Repositories</div>
+</div>
+
+<table class="ui table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Stars</th>
+        <th>Watchers</th>
+        <th>Link</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each repo in model}}
+        <tr>
+            <td>{{#link-to 'repository' repo.name}}{{repo.name}}{{/link-to}}</td>
+            <td>{{repo.description}}</td>
+            <td>{{repo.stargazers_count}}</td>
+            <td>{{repo.watchers_count}}</td>
+            <td><a {{bind-attr href="repo.html_url"}}>See it on Github</a></td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

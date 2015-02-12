@@ -1,0 +1,11 @@
+<div class="ui grid">
+    <div class="four wide column">
+        <div class="ui vertical fluid menu">
+            {{#each developer in model}}
+                {{#link-to 'user' developer.login class="teal item"}}
+                    {{developer.name}}
+                {{/link-to}}
+            {{/each}}
+        </div>
+    </div>
+</div>
